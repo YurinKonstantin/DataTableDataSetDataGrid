@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="DataTableDataSetDataGrid.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataTableDataSetDataGrid"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="grid" Tag="{x:Bind booksTable.TableName}" DataContext="{x:Bind _ClassTable.booksTable}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <controls:DataGrid Loading="DataGrid1_Loading" AutoGenerateColumns="False" AutoGeneratingColumn="DataGrid1_AutoGeneratingColumn" ItemsSource="{x:Bind _ClassTable.collection}" x:Name="dataGrid1" IsReadOnly="False">
+           
+        </controls:DataGrid>
+        <telerikGrid:RadDataGrid Grid.Row="1" AutoGenerateColumns="False" x:Name="DataGridTeleric" ItemsSource="{x:Bind _ClassTable.collection1, Mode=OneWay}" >
+            <telerikGrid:RadDataGrid.Columns>
+                <telerikGrid:DataGridTextColumn PropertyName="id" Header="id" />
+            </telerikGrid:RadDataGrid.Columns>
+        </telerikGrid:RadDataGrid>
+        <StackPanel Grid.Row="2">
+        
+            <Button Content="Новый колонка" Click="Button_Click"/>
+            <Button Content="Новая строка" Click="Button_Click_1"/>
+            <Button Content="Что там?" Click="Button_Click_2"/>
+        </StackPanel>
+    </Grid>
+</Page>
